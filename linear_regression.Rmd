@@ -1,0 +1,300 @@
+---
+title: "Linear Regression"
+author: "Newton's three sisters"
+date: "February 16, 2025"
+output:
+  beamer_presentation:
+    latex_engine: xelatex
+    theme: metropolis
+  slidy_presentation: default
+fonttheme: serif
+fontsize: 8pt
+institute: Department of Statistics \newline Sungshin Women’s University
+header-includes: \input{header_includes.tex}
+---
+
+# Distribution of the RSS Values
+
+## Hat matrix
+- Hat matrix defined by $\hat{y} = Hy$
+
+
+  $\hat{y} = X\hat{\beta} = X(X^TX)^{-1}{X^T}y = Hy$
+$$H \triangleq X(X^TX)^{-1}{X^T}$$
+
+- Some properties
+\begin{align*}
+H^2 &= X(X^TX)^{-1}{X^T} \cdot X(X^TX)^{-1}{X^T} = X(X^TX)^{-1}{X^T} = H \\
+(I -H)^2 &= I - 2H + H^2 = I - H \\
+HX &= X(X^TX)^{-1}{X^T} \cdot X = X
+\end{align*}
+
+## Residual sum of square
+
+- RSS defined
+$$
+\text{RSS} \triangleq ||y-\hat{y}||^2
+$$
+
+- Using hat matrix
+\begin{align*}
+y - \hat{y} &= y - Hy = (I-H)y = (I-H)(X\beta+\varepsilon) \\
+            &= (X -HX)\beta + (I - H)\varepsilon = (I - H)\varepsilon
+\end{align*}
+
+$$
+\text{RSS} \triangleq ||y - \hat{y}||^2 = \{(I - H)\varepsilon\}^T (I - H)\varepsilon = \varepsilon^T(I-H)^2\varepsilon = \varepsilon^T(I-H)\varepsilon
+$$
+
+## Eigenvalues $H$ and $I-H$
+
+- They are only zeros and ones
+\vt
+- Dimensions of the eigenspaces of $H$ and $I-H$ are both $p + 1$ \
+\vspace{0.1cm}
+\textbf{Proof} using rank$(X) = p+1$ 
+\begin{align*}
+\text{rank}(H) &\le \text{min}\{\text{rank}(X(X^TX)^{-1}), \text{rank}(X)\} \le \text{rank}(X) = p + 1 \\
+\text{rank}(H) &\ge \text{rank}(HX) = \text{rank}(X) = p + 1
+\end{align*}
+
+
+## Hat matrix
+- Hat matrix defined by 
+
+
+  $\hat{y} = X\hat{\beta} = X(X^TX)^{-1}{X^T}y = Hy$
+$$H \triangleq X(X^TX)^{-1}{X^T}$$
+- some properties
+\begin{align*}
+H^2 &= X(X^TX)^{-1}{X^T} \cdot X(X^TX)^{-1}{X^T} = X(X^TX)^{-1}{X^T} = H \\
+(I -H)^2 &= I - 2H + H^2 = I - H \\
+HX &= X(X^TX)^{-1}{X^T} \cdot X = X
+\end{align*}
+
+## Residual sum of square
+- RSS defined
+$$
+\text{RSS} \triangleq ||y-\hat{y}||^2
+$$
+- Using hat matrix
+\begin{align*}
+y - \hat{y} &= y - Hy = (I-H)y = (I-H)(X\beta+\varepsilon) \\
+            &= (X -HX)\beta + (I - H)\varepsilon = (I - H)\varepsilon
+\end{align*}
+$$
+RSS \triangleq ||y - \hat{y}||^2 = \{(I - H)\varepsilon\}^T (I - H)\varepsilon = \varepsilon^T(I-H)^2\varepsilon = \varepsilon^T(I-H)\varepsilon
+$$
+
+## Eigenvalues of $H$ and Null space of ($I-H$)
+- Proof by contrapositive
+\begin{align*}
+Hx = x \Rightarrow (I - H)x = 0 \\
+(I - H)x = 0 \Rightarrow Hx = x
+\end{align*}
+- Dimensions of the eigenspaces of $H$ is $p + 1$ \
+\vt
+\textbf{Proof} using rank($X) = p+1$ 
+\begin{align*}
+\text{rank}(H) &\le \text{min}\{\text{rank}(X(X^TX)^{-1}), \text{rank}(X)\} \le \text{rank}(X) = p + 1 \\
+\text{rank}(H) &\ge \text{rank}(HX) = \text{rank}(X) = p + 1
+\end{align*}
+
+- Dimensions of the null space of $I-H$ is $N - (p+1)$
+
+$$
+P (I - H) P^T = \operatorname{diag}(\underbrace{1, \dots, 1}_{N-p-1}, \underbrace{0, \dots, 0}_{p+1})
+$$
+
+## 제목 뭐라고 하지..
+-  We define $v = P\varepsilon \in \mathbb{R}^N$, then from $\varepsilon = P^Tv$
+\begin{align*}
+\text{RSS} 
+&= \varepsilon^T(I - H)\varepsilon = (P^Tv)^T(I-H)P^Tv = v^TP(I-H)P^Tv \\
+&= [v_1, \cdots, v_{N-p-1}, v_{N-p}, \cdots, v_n] 
+\begin{bmatrix}
+1      & 0      &\cdots  &  \cdots & \cdots & 0 \\
+0      & \ddots & 0      &  \cdots & \cdots & \vdots \\
+\vdots & 0      & 1      &  \cdots & \cdots & 0 \\
+0      & 0      & 0      &  \cdots & \cdots & \cdots \\
+\vdots & \vdots & \vdots &  \vdots & \ddots & \vdots \\
+0      & \cdots & 0      &  \cdots & \cdots & 0
+\end{bmatrix}
+\begin{bmatrix}
+v_1 \\
+\vdots \\
+v_{N-p-1} \\
+v_{N-p} \\
+\vdots \\
+v_N
+\end{bmatrix} 
+&= \sum^{N-p-1}_{i = 1}v_i^2
+\end{align*}
+
+## dd
+- Let $w \in \mathbb{R}^{N-p-1}$
+\vt
+- Average 
+
+  $E[v] = E[P\varepsilon] = 0$
+
+  $E[w] = 0$
+\vt
+
+- Covariance 
+
+  $E[vv^t] = E[P\varepsilon(P\varepsilon)^T] = PE[\varepsilon\varepsilon^t]P=P\sigma^2IP^T = \sigma^2I$
+  
+  $E[ww^T] = \sigma^2I$
+\vt
+
+- We have RSS
+$$
+\frac{RSS}{\sigma^2} \sim \chi^2_{N-p-1}
+$$
+
+# Hypothesis Testing for $\hat{\beta}_j \ne 0$
+
+## Test statistic $T$
+- A t distribution with $N - P -1$ degrees of freedom
+\vt
+- We decide that hypothesis $\beta_j = 0$ should be rejected.
+\vt
+- $U \sim N(0,1),\ V \sim \chi^2_m$, 
+
+$$
+T \triangleq U / \sqrt{V/m}
+$$
+
+```{r fig.height=5, fig.width=10, message=FALSE}
+curve(dnorm(x), -10, 10, ann = FALSE, ylim = c(0, 0.5), lwd = 5)
+for(i in 1:10)curve(dt(x, df= i), -10, 10, col = i, add = TRUE, ann = FALSE)
+legend("topright", legend = 1:10, lty = 1, col = 1:10)
+```
+
+## Significance level
+- $\alpha = 0.01,\ 0.05$
+\vt
+- Reject the null hypothesis 
+
+# Coefficient of Determination and the Detection of Collinearity
+
+## 제목 뭐라고 하지.
+
+- We define a matrix $W \in \mathbb{R}^{N \times N}$ such that all the elements are $1/N$ \
+
+  $Wy \in \mathbb{R}^N$ are $\bar{y} = Wy = \sum^{N}_{i=1}y_i$ for $y_1, \cdots,y_N \in \mathbb{R}$
+
+- Residual sum of squares RSS
+
+$$
+\text{RSS} = ||\hat{y}-y||^2 = ||(I-H)\varepsilon||^2=||(I-H)y||^2
+$$
+- Explained sum of squres ESS
+
+$$
+\text{ESS} \triangleq ||\hat{y} - \bar{y}||^2 = ||\hat{y} - Wy||^2 = ||(H - W)y||^2
+$$
+- Total sum of squres TSS
+
+$$
+\text{TSS} \triangleq ||y - \bar{y}||^2 = ||(I - W)y||^2 
+$$
+
+## 제목
+
+- We have relation TSS = RSS + ESS \
+
+  \textbf{Proof}
+
+## Sample - based correlation
+
+- Coefficient of determination
+$$
+R^2 = \frac{\text{ESS}}{\text{TSS}} = 1 - \frac{\text{RSS}}{\text{TSS}}
+$$
+- Correlation between the covariates and response
+$$
+\hat{\rho} \triangleq \frac{\sum^N_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum^N_{i=1}(x_i-\bar{x})^2\sum^N_{i=1}(y_i-\bar{y})^2}} 
+$$
+
+\begin{align*}
+\frac{\text{ESS}}{\text{TSS}} &= \frac{\hat{\beta_1^2}||x-\bar{x}||^2}{||y-\bar{y}||^2} = \left\{ \frac{\sum^N_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{\sum^N_{i=1}(x_i-\bar{x})^2} \right\}^2 \frac{\sum^N_{i=1}(x_i-\bar{x})^2}{\sum^N_{i=1}(y_i-\bar{y})^2} \\
+&= \frac{\left\{ \sum^N_{i=1}(x_i-\bar{x})(y_i-\bar{y}) \right\}^2}{\sum^N_{i=1}(x_i-\bar{x})^2]\sum^N_{i=1}(y_i-\bar{y})^2} =\hat{\rho}^2
+\end{align*}
+
+## penalized
+
+- Variance inflation factors
+$$
+\text{VIF} \triangleq \frac{1}{1 - R^2_{X_j|X_{-j}}}
+$$
+
+- The minimum value of VTI is one, and we say that the collinearity of covariate is strong when its VIF value is large
+
+# Confidence and Prediction Intervals
+
+## aa
+
+- We have showed how to obtain the estimate $\hat{\beta}$ of $\beta \in \mathbb{R}^{p+1}$, confidence interval of $\hat{\beta}$ as follows
+
+$$
+\beta_i = \hat{\beta_i} \pm t_{N-p-1}(\alpha/2)\text{SE}(\hat{\beta_i}), \ \ \ \  \text{for} \ \   i = 0, 1, \cdots, p
+$$
+
+- Confidence interval of $x_* \hat{\beta}$ for another point $x_*\in \mathbb{R}^{p+1}$
+
+  - The average
+$$
+E[x_*\hat{\beta}] = x_*E[\hat{\beta}]
+$$
+
+  - The variance
+$$
+V[x_*\hat{\beta}] = x_*V(\hat{\beta})x_*^T = \sigma^2x_*(X^TX)^{-1}x_*^T
+$$
+    
+- We define 
+
+$$
+\hat{\sigma} \triangleq \sqrt{\text{RSS}/(N -p-1)}, \ \ \text{SE}(x_*\hat{\beta}) \triangleq \hat{\sigma}\sqrt{x_*(X^TX)^{-1}x_*^T}
+$$
+
+## C 정의?
+
+- $\text{C} \sim t_{N-p-1}$
+\vt
+- variance in the difference between $x_*\hat{\beta}$ and $y_* \triangleq x_*\beta + \varepsilon$
+$$
+V[x_*\hat{\beta} - (x_*\beta + \varepsilon)] = V[x_*(\hat{\beta} - \beta)]+V[\varepsilon] = \sigma^2x_*(X^TX)^{-1}x_*^T +\sigma^2
+$$
+
+- Similarly, we can derive the following
+$$
+P \triangleq \frac{x_*\hat{\beta}-y_*}{\text{SE}(x_*\hat{\beta}-y_*)} = \frac{x_*\hat{\beta}-y_*}{\sigma(1+\sqrt{x_*(X^TX)^{-1}x_*^T)}} \Big/ \sqrt{\frac{\text{RSS}}{\sigma^2}\Big/(N-p-1)} \sim t_{N-p-1}
+$$
+
+- The confidence and prediction intervals
+\begin{align*}
+x_*\beta = x_*\hat{\beta} \pm t_{N-p-1}(\alpha/2)\hat{\sigma}\sqrt{x_*(X^TX)^{-1}x_*^T} \\
+y_* = x_*\hat{\beta} \pm t_{N-p-1}(\alpha/2)\hat{\sigma}\sqrt{1+x_*(X^TX)^{-1}x_*^T}
+\end{align*}
+
+<!-- ##  -->
+<!-- ```{r message=FALSE} -->
+<!-- shinyApp(ui, server) -->
+<!-- ``` -->
+
+
+## Q & A
+
+\begin{center}
+  {\bf {\Huge Q \& A}}
+\end{center}
+
+## 
+
+\begin{center}
+  {\bf {\Huge Thank you :)}}
+\end{center}
+

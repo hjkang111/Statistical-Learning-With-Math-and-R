@@ -1,5 +1,6 @@
 ---
-title: "Linear Regression"
+title: "Chapter 2: Linear Regression"
+subtitle: "dew"
 author: "Newton's three sisters"
 date: "February 16, 2025"
 output:
@@ -9,7 +10,7 @@ output:
   slidy_presentation: default
 fonttheme: serif
 fontsize: 8pt
-institute: Department of Statistics \newline Sungshin Women’s University
+institute: The Three Sisters of Newton \newline School of Mathematics, Statistics and Data Science \newline Sungshin Women's University
 header-includes: \input{header_includes.tex}
 ---
 

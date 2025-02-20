@@ -1,7 +1,7 @@
 ---
 title: "Chpater 2 : Linear Regression"
 subtitle: "Coefficient of determination and Detection of Collinearity and Confidence and Prediction interval"
-author: "Miyoung Jang"
+author: "JuHyun Kang"
 date: "February 23, 2025"
 output:
   beamer_presentation:

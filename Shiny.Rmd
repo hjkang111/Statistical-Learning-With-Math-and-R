@@ -1,0 +1,113 @@
+---
+title: "Shiny in R"
+author: "Jinju Kim"
+date: November 19, 2024
+institute: Department of Statistics \newline Sungshin Women’s University
+fonttheme: "serif"
+fontsize: 8pt
+output:
+  beamer_presentation:
+    latex_engine: xelatex 
+    theme: "metropolis"
+header-includes:
+  - \input{header_includes.tex}
+---
+
+
+# Shiny
+
+## Shiny
+
+
+
+- 데이터 분석 결과를 웹 애플리케이션으로 구현하는 도구 
+\vt
+- HTML, CSS, JavaScript 기능 이용 가능 
+\vt
+- 사용자의 요청에 따라 응답하는 구조 
+
+## Shiny 기본 구조 
+
+\vt
+- ui(): 데이터 입력과 분석 결과 출력
+\vt
+- server(): 입력 결과를 처리한 다음 다시 ui()로 전송
+\vt
+- shinyApp(): 애플리케이션 실행 
+
+## User Interface
+```{r warning=FALSE}
+
+```
+
+## Server 
+```{r}
+
+```
+
+## Output
+```{r fig.height=5, fig.width=10, message=FALSE}
+
+```
+
+# Responsive Web
+
+##  반응형 웹 애플리케이션
+
+- 반응성(reactive): ui()의 입력값인 input\$~ 이 변경될 때 server()가 자동으로 변화를 감지하여 출력값 output\$~을 랜던링 후 갱신하는 것 
+\vt
+- 입력 슬라이더 범위가 바뀔때마다 출력 테이블이 달라짐 
+
+
+## 데이터 불러오기 
+```{r message=FALSE, warning=FALSE}
+
+```
+
+## 반응식 작성하기 
+```{r}
+
+```
+
+## Output
+```{r message=FALSE}
+
+```
+
+
+# Settings and layout
+
+## 단일 페이지 화면 
+```{r}
+
+```
+
+<!-- ##  -->
+<!-- ```{r message=FALSE} -->
+<!-- shinyApp(ui, server) -->
+<!-- ``` -->
+
+
+## 탭 페이지 추가 
+```{r}
+
+```
+
+
+<!-- ##  -->
+<!-- ```{r message=FALSE} -->
+<!-- shinyApp(ui, server) -->
+<!-- ``` -->
+
+
+## Q & A
+
+\begin{center}
+  {\bf {\Huge Q \& A}}
+\end{center}
+
+## 
+
+\begin{center}
+  {\bf {\Huge Thank you :)}}
+\end{center}

@@ -17,24 +17,30 @@ header-includes: \input{header_includes.tex}
 # Distribution of the RSS Values
 
 ## Hat matrix
-- Hat matrix defined by $\hat{y} = Hy$
+- Hat matrix defined by 
 
 
   $\hat{y} = X\hat{\beta} = X(X^TX)^{-1}{X^T}y = Hy$
-$$H \triangleq X(X^TX)^{-1}{X^T}$$
+$$H \mathrel{:=} X(X^TX)^{-1}{X^T}$$
+
 
 - Some properties
-\begin{align*}
-H^2 &= X(X^TX)^{-1}{X^T} \cdot X(X^TX)^{-1}{X^T} = X(X^TX)^{-1}{X^T} = H \\
-(I -H)^2 &= I - 2H + H^2 = I - H \\
-HX &= X(X^TX)^{-1}{X^T} \cdot X = X
-\end{align*}
+\begin{enumerate}
+\vspace{0.15cm}
+\item $H^2 = H$
+\vspace{0.15cm}
+\item $(I -H)^2 = I - H$
+\vspace{0.15cm}
+\item $HX = X$
+\vspace{0.15cm}
+\item $H^{T} = H$
+\end{enumerate}
 
-## Residual sum of square
+## Residual Sum of Squares
 
 - RSS defined
 $$
-\text{RSS} \triangleq ||y-\hat{y}||^2
+\text{RSS} \mathrel{:=} ||y-\hat{y}||^2
 $$
 
 - Using hat matrix
@@ -44,7 +50,7 @@ y - \hat{y} &= y - Hy = (I-H)y = (I-H)(X\beta+\varepsilon) \\
 \end{align*}
 
 $$
-\text{RSS} \triangleq ||y - \hat{y}||^2 = \{(I - H)\varepsilon\}^T (I - H)\varepsilon = \varepsilon^T(I-H)^2\varepsilon = \varepsilon^T(I-H)\varepsilon
+||y - \hat{y}||^2 = \{(I - H)\varepsilon\}^T (I - H)\varepsilon = \varepsilon^T(I-H)^2\varepsilon = \varepsilon^T(I-H)\varepsilon
 $$
 
 ## Eigenvalues $H$ and $I-H$
@@ -59,33 +65,6 @@ $$
 \text{rank}(H) &\ge \text{rank}(HX) = \text{rank}(X) = p + 1
 \end{align*}
 
-
-## Hat matrix
-- Hat matrix defined by 
-
-
-  $\hat{y} = X\hat{\beta} = X(X^TX)^{-1}{X^T}y = Hy$
-$$H \triangleq X(X^TX)^{-1}{X^T}$$
-- some properties
-\begin{align*}
-H^2 &= X(X^TX)^{-1}{X^T} \cdot X(X^TX)^{-1}{X^T} = X(X^TX)^{-1}{X^T} = H \\
-(I -H)^2 &= I - 2H + H^2 = I - H \\
-HX &= X(X^TX)^{-1}{X^T} \cdot X = X
-\end{align*}
-
-## Residual sum of square
-- RSS defined
-$$
-\text{RSS} \triangleq ||y-\hat{y}||^2
-$$
-- Using hat matrix
-\begin{align*}
-y - \hat{y} &= y - Hy = (I-H)y = (I-H)(X\beta+\varepsilon) \\
-            &= (X -HX)\beta + (I - H)\varepsilon = (I - H)\varepsilon
-\end{align*}
-$$
-RSS \triangleq ||y - \hat{y}||^2 = \{(I - H)\varepsilon\}^T (I - H)\varepsilon = \varepsilon^T(I-H)^2\varepsilon = \varepsilon^T(I-H)\varepsilon
-$$
 
 ## Eigenvalues of $H$ and Null space of ($I-H$)
 - Proof by contrapositive
@@ -107,7 +86,7 @@ $$
 P (I - H) P^T = \operatorname{diag}(\underbrace{1, \dots, 1}_{N-p-1}, \underbrace{0, \dots, 0}_{p+1})
 $$
 
-## 제목 뭐라고 하지..
+## RSS
 -  We define $v = P\varepsilon \in \mathbb{R}^N$, then from $\varepsilon = P^Tv$
 \begin{align*}
 \text{RSS} 
@@ -132,7 +111,7 @@ v_N
 &= \sum^{N-p-1}_{i = 1}v_i^2
 \end{align*}
 
-## dd
+## Distribution of RSS
 - Let $w \in \mathbb{R}^{N-p-1}$
 \vt
 - Average 

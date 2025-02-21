@@ -1,6 +1,6 @@
 ---
 title: "Chapter 2: Linear Regression"
-subtitle: "Distribution of the RSS Values and Hypothesis Testing for $ \hat \beta_{j} = 0$"
+subtitle: "Distribution of the RSS Values and Hypothesis Testing for $ \hat{\beta_j} \neq 0$"
 author: "Newton's three sisters"
 date: "February 16, 2025"
 output:

@@ -1,8 +1,8 @@
 ---
-title: "Chapter 2: Linear Regression"
-subtitle: "Distribution of the RSS Values and Hypothesis Testing for $\\hat{\\beta}_j \\neq 0$"
+title: "Chapter 3: Resampling"
+subtitle: "CV Formula for Linear Regression"
 author: "JuHyun Kang"
-date: "February 23, 2025"
+date: "March 2, 2025"
 output:
   beamer_presentation:
     latex_engine: xelatex
